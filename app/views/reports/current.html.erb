@@ -1,0 +1,18 @@
+<h1>Current Inventory</h1>
+
+<table>
+  <tr>
+    <th>Category</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Total</th>
+  </tr>
+<% @items.each do |item| %>
+  <tr>
+    <td><%= item.category.name %></td>
+    <td><%= item.name %></td>
+    <td><%= item.description %></td>
+    <td><%= item.transactions_sum %></td>
+  </tr>
+<% end %>
+</table>
