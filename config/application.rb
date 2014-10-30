@@ -21,3 +21,6 @@ module Inventory
     # config.i18n.default_locale = :de
   end
 end
+
+raw_config = File.read("#{Rails.root}/config/config.yml")
+APP_CONFIG = YAML.load(raw_config)[Rails.env].symbolize_keys

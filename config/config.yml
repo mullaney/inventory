@@ -6,5 +6,5 @@ test:
 
 production:
   perform_authentication: true
-  username: ENV['ADMIN_USERNAME']
-  password: ENV['ADMIN_PASSCODE']
+  username: ENV["ADMIN_USERNAME"]
+  password: ENV["ADMIN_PASSCODE"]
