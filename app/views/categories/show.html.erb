@@ -1,9 +1,30 @@
 <p id="notice"><%= notice %></p>
 
+<h1>
+  Category: <%= @category.name %>
+</h1>
+
 <p>
-  <strong>Name:</strong>
-  <%= @category.name %>
+  <%= link_to 'Edit Category', edit_category_path(@category), class: "button" %>
 </p>
 
-<%= link_to 'Edit', edit_category_path(@category) %> |
-<%= link_to 'Back', categories_path %>
+<% if !@items.blank? %>
+  <table>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+    <% @items.each do |item| %>
+      <tr>
+        <td><%= item.id %></td>
+        <td><%= item.name %></td>
+        <td><%= item.description %></td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>
+
+<p>
+  <%= link_to "New #{@category.name}", new_category_item_path(@category), class: "button" %>
+</p>

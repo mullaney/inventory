@@ -1,4 +1,4 @@
-<h1>Current Inventory</h1>
+<h1>Current Inventory:</h1>
 
 <table>
   <tr>
@@ -9,8 +9,8 @@
   </tr>
 <% @items.each do |item| %>
   <tr>
-    <td><%= item.category.name %></td>
-    <td><%= item.name %></td>
+    <td><%= link_to item.category.name, item.category if item.category %></td>
+    <td><%= link_to item.name, item %></td>
     <td><%= item.description %></td>
     <td><%= item.transactions_sum %></td>
   </tr>

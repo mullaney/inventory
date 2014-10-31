@@ -1,13 +1,10 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Category:</strong>
-  <%= @item.category.name %>
-</p>
+<h1>Item: <%= @item.name %></h1>
 
 <p>
-  <strong>Name:</strong>
-  <%= @item.name %>
+  <strong>Category:</strong>
+  <%= link_to @item.category.name, @item.category if @item.category %>
 </p>
 
 <p>
@@ -15,5 +12,35 @@
   <%= @item.description %>
 </p>
 
-<%= link_to 'Edit', edit_item_path(@item) %> |
-<%= link_to 'Back', items_path %>
+<p>
+  <strong>Current Balance:</strong>
+  <%= @balance %>
+</p>
+
+<p><%= link_to "Edit #{@item.name}", edit_item_path(@item), class: "button" %></p>
+
+<% if !@transactions.blank? %>
+  <table>
+    <tr>
+      <th>Id</th>
+      <th>Date</th>
+      <th>Code</th>
+      <th>Item</th>
+      <th>Amount</th>
+      <th></th>
+    </tr>
+    <% @transactions.each do |transaction| %>
+      <tr>
+        <td><%= transaction.id %></td>
+        <td><%= transaction.date %></td>
+        <td><%= transaction.code %></td>
+        <td><%= transaction.item.name %></td>
+        <td><%= transaction.amount %></td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>
+
+<p>
+  <%= link_to "New Transaction", new_item_transaction_path(@item), class: "button" %>
+</p>

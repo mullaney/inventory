@@ -1,20 +1,30 @@
 class ItemsController < ApplicationController
+  before_action :set_category
   before_action :set_item, only: [:show, :edit, :update, :destroy]
 
   # GET /items
   # GET /items.json
   def index
-    @items = Item.all
+    if @category
+      @items = @category.items
+    else
+      @items = Item.all
+    end
   end
 
   # GET /items/1
   # GET /items/1.json
   def show
+    @transactions = @item.transactions.most_recent_first
+    @balance = @item.transactions.sum(:amount)
   end
 
   # GET /items/new
   def new
     @item = Item.new
+    if @category
+      @item.category_id = @category.id
+    end
   end
 
   # GET /items/1/edit
@@ -25,6 +35,9 @@ class ItemsController < ApplicationController
   # POST /items.json
   def create
     @item = Item.new(item_params)
+    if @category
+      @item.category_id = @category.id
+    end
 
     respond_to do |format|
       if @item.save
@@ -65,6 +78,10 @@ class ItemsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_item
       @item = Item.find(params[:id])
+    end
+
+    def set_category
+      @category = params[:category_id] ? Category.find(params[:category_id]) : nil
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

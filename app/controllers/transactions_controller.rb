@@ -1,10 +1,15 @@
 class TransactionsController < ApplicationController
+  before_action :set_item
   before_action :set_transaction, only: [:show, :edit, :update, :destroy]
 
   # GET /transactions
   # GET /transactions.json
   def index
-    @transactions = Transaction.all
+    if @item
+      @transactions = @item.transactions.most_recent_first
+    else
+      @transactions = Transaction.most_recent_first
+    end
   end
 
   # GET /transactions/1
@@ -15,6 +20,9 @@ class TransactionsController < ApplicationController
   # GET /transactions/new
   def new
     @transaction = Transaction.new
+    if @item
+      @transaction.item_id = @item.id
+    end
   end
 
   # GET /transactions/1/edit
@@ -25,6 +33,9 @@ class TransactionsController < ApplicationController
   # POST /transactions.json
   def create
     @transaction = Transaction.new(transaction_params)
+    if @item
+      @transaction.item_id = @item.id
+    end
 
     respond_to do |format|
       if @transaction.save
@@ -62,6 +73,10 @@ class TransactionsController < ApplicationController
   end
 
   private
+    def set_item
+      @item = params[:item_id] ? Item.find(params[:item_id]) : nil
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_transaction
       @transaction = Transaction.find(params[:id])

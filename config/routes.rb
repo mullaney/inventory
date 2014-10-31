@@ -1,10 +1,17 @@
 Rails.application.routes.draw do
-  resources :transactions
-
-  resources :items
-
+  
   resources :categories
+  resources :items
+  resources :transactions, only: [:index]
 
+  resources :categories do
+    resources :items
+  end
+  
+  resources :items do
+    resources :transactions
+  end
+  
   root to: "reports#current"
 
 

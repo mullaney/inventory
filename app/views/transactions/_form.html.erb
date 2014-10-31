@@ -1,4 +1,4 @@
-<%= simple_form_for(@transaction) do |f| %>
+<%= simple_form_for [@item, @transaction] do |f| %>
   <% if @transaction.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@transaction.errors.count, "error") %> prohibited this transaction from being saved:</h2>
@@ -11,8 +11,8 @@
     </div>
   <% end %>
 
-  <%= f.association :item %>
-  <%= f.input :code, collection: ['delivery', 'sale', 'waste', 'buyback'] %>
+  <%= f.input :item_id, as: :hidden %>
+  <%= f.input :code, collection: @transaction.code_list %>
   <%= f.input :date %>
   <%= f.input :amount %>
   <%= f.button :submit %>
