@@ -9,13 +9,3 @@ body a.button {
   border-bottom: 1px solid #333333;
   border-left: 1px solid #CCCCCC;
 }
-
-body {
-  width: 640px;
-}
-
-@media only screen and (max-device-width: 480px) {
-  body {
-    font-size: 1.5em
-  }
-  }
