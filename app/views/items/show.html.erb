@@ -16,7 +16,22 @@
   <strong>Current Balance:</strong>
   <%= @balance %>
 </p>
-
+<hr />
+<p>
+  <strong>First Delivery Date:</strong>
+  <%= @item.first_delivery_date %><br />
+  <strong>Total Sales:</strong>
+  <%= @item.total_sales %><br />
+  <strong>Recent Sales:</strong>
+  <%= @item.recent_sales %> in last four weeks<br />
+  <strong>Weeks of stock:</strong>
+  <% if @item.recent_sales == 0 %>
+    "Not applicable."
+  <% else %>
+    <%= @balance / (@item.recent_sales / 4.0) %>
+  <% end %>
+</p>
+<hr />
 <p><%= link_to "Edit #{@item.name}", edit_item_path(@item), class: "button" %></p>
 
 <% if !@transactions.blank? %>

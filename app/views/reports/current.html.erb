@@ -6,6 +6,7 @@
     <th>Name</th>
     <th>Description</th>
     <th>Total</th>
+    <th>Wks of Stock</th>
   </tr>
 <% @items.each do |item| %>
   <tr>
@@ -13,6 +14,13 @@
     <td><%= link_to item.name, item %></td>
     <td><%= item.description %></td>
     <td><%= item.transactions_sum %></td>
+    <td>
+      <% if item.recent_sales == 0 %>
+        -
+      <% else %>
+        <%= item.transactions_sum / (item.recent_sales / 4.0) %>
+      <% end %>
+    </td>
   </tr>
 <% end %>
 </table>
