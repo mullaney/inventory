@@ -28,7 +28,7 @@
   <% if @item.recent_sales == 0 %>
     "Not applicable."
   <% else %>
-    <%= @balance / (@item.recent_sales / 4.0) %>
+    <%= (@balance / (@item.recent_sales / 4.0)).round(1) %>
   <% end %>
 </p>
 <hr />

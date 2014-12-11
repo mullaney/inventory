@@ -18,7 +18,7 @@
       <% if item.recent_sales == 0 %>
         -
       <% else %>
-        <%= item.transactions_sum / (item.recent_sales / 4.0) %>
+        <%= (item.transactions_sum / (item.recent_sales / 4.0)).round(1) %>
       <% end %>
     </td>
   </tr>
