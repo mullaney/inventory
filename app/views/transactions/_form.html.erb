@@ -11,6 +11,9 @@
     </div>
   <% end %>
 
+  <% if @balance %>
+    <p>Current Inventory: <%= @balance %></p>
+  <% end %>
   <%= f.input :item_id, as: :hidden %>
   <%= f.input :code, collection: @transaction.code_list %>
   <%= f.input :date %>
