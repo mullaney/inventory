@@ -6,7 +6,8 @@
     <th>Name</th>
     <th>Description</th>
     <th>Total</th>
-    <th>Wks of Stock</th>
+    <th>Wks Left</th>
+    <th>Actions</th>
   </tr>
 <% @items.each do |item| %>
   <tr>
@@ -20,6 +21,10 @@
       <% else %>
         <%= (item.transactions_sum / (item.recent_sales / 4.0)).round(1) %>
       <% end %>
+    </td>
+    <td>
+      <%= link_to "Edit Item", edit_item_path(item), class: "button" %>
+      <%= link_to "New Transaction", new_item_transaction_path(item), class: "button" %>
     </td>
   </tr>
 <% end %>
