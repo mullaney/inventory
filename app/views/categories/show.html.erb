@@ -28,7 +28,7 @@
         <td><%= item.description %></td>
         <td>
           <%= link_to "Edit Item", edit_item_path(item), class: "button" %>
-          <%= link_to "New Transaction", new_item_transaction_path(item), class: "button" %>
+          <%= link_to "New Transaction", new_item_transaction_path(item), class: "button" if item.discontinued == false %>
         </td>
       </tr>
     <% end %>

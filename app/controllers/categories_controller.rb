@@ -10,7 +10,7 @@ class CategoriesController < ApplicationController
   # GET /categories/1
   # GET /categories/1.json
   def show
-    @items = @category.items.order(:name)
+    @items = @category.items.order(:discontinued).order(:name)
   end
 
   # GET /categories/new
