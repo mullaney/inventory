@@ -8,18 +8,28 @@
   <%= link_to 'Edit Category', edit_category_path(@category), class: "button" %>
 </p>
 
+<p>
+  <em>Gray rows indicate a discontinued item.</em>
+</p>
+
 <% if !@items.blank? %>
   <table>
     <tr>
       <th>Id</th>
       <th>Name</th>
       <th>Description</th>
+      <th>Actions</th>
     </tr>
     <% @items.each do |item| %>
-      <tr>
+    <% item.discontinued == true ? item_class = "discontinued" : item_class = "active" %>
+      <tr class='<%= item_class %>'>
         <td><%= item.id %></td>
         <td><%= link_to item.name, item %></td>
         <td><%= item.description %></td>
+        <td>
+          <%= link_to "Edit Item", edit_item_path(item), class: "button" %>
+          <%= link_to "New Transaction", new_item_transaction_path(item), class: "button" %>
+        </td>
       </tr>
     <% end %>
   </table>

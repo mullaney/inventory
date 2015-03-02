@@ -17,14 +17,6 @@ class TransactionsController < ApplicationController
   def show
   end
 
-  def delivery
-    @transaction = Transaction.new
-    if @item
-      @transaction.item_id = @item.id
-    end
-    @transaction.code = 'delivery'
-  end
-
   # GET /transactions/new
   def new
     @transaction = Transaction.new

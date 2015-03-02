@@ -14,9 +14,11 @@
   <% if @balance %>
     <p>Current Inventory: <%= @balance %></p>
   <% end %>
-  <%= f.input :item_id, as: :hidden %>
-  <%= f.input :code, collection: @transaction.code_list %>
-  <%= f.input :date %>
-  <%= f.input :amount %>
-  <%= f.button :submit %>
+  <fieldset>
+    <%= f.input :item_id, as: :hidden %>
+    <%= f.input :code, collection: @transaction.code_list %>
+    <%= f.input :date %>
+    <%= f.input :amount %>
+    <%= f.button :submit %>
+  </fieldset>
 <% end %>

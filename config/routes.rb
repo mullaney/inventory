@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   resources :categories
   resources :items
   resources :transactions, only: [:index]
-  get 'items/:item_id/new-delivery', to: 'transactions#delivery', as: 'new_item_delivery'
   
 
   resources :categories do

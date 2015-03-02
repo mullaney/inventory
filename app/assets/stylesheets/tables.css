@@ -16,3 +16,7 @@ td a {
 table {
   border-spacing: 0;
 }
+
+tr.discontinued {
+  background-color: #ccc;
+}

@@ -4,6 +4,9 @@ class Item < ActiveRecord::Base
   validates :category_id, presence: true
   validates :name, presence: true
 
+  after_initialize :init
+
+
   scope :with_balance, -> { joins(:transactions).select("items.*, sum(transactions.amount) as transactions_sum").group("items.id").order('items.name ASC') }
 
   def first_delivery_date
@@ -21,5 +24,11 @@ class Item < ActiveRecord::Base
 
   def recent_sales
     sales = -self.transactions.where("code = ? AND date > ?", "sale", Date.today - 4.weeks).sum(:amount)
+  end
+
+  private
+
+  def init
+    self.discontinued  ||= false
   end
 end

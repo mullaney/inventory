@@ -1,7 +1,7 @@
 class Transaction < ActiveRecord::Base
   belongs_to :item
   has_one :category, through: :items
-  validates :code, :inclusion => {:in => ['delivery', 'sale', 'waste', 'buyback', 'found', 'other']}
+  validates :code, :inclusion => {:in => ['delivery', 'sale', 'waste', 'buyback', 'lost', 'found', 'other']}
   validate :has_appropriate_amount
 
   scope :most_recent_first, -> { order('date DESC') }
@@ -9,7 +9,7 @@ class Transaction < ActiveRecord::Base
   after_initialize :init
 
   def code_list
-    ['delivery', 'sale', 'waste', 'buyback', 'found', 'other']
+    ['delivery', 'sale', 'waste', 'buyback', 'lost', 'found', 'other']
   end
 
   def has_appropriate_amount
@@ -24,6 +24,8 @@ class Transaction < ActiveRecord::Base
         errors.add(:amount, "for 'sale' cannot be positive.")
       elsif self.code == "waste"
         errors.add(:amount, "for 'waste' cannot be positive.")
+      elsif self.code == "lost"
+        errors.add(:amount, "for 'lost' cannot be positive.")
       elsif self.code == "buyback"
         errors.add(:amount, "for 'waste' cannot be positive.")
       end

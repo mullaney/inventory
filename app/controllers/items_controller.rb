@@ -8,7 +8,7 @@ class ItemsController < ApplicationController
     if @category
       @items = @category.items
     else
-      @items = Item.all
+      @items = Item.all.order('items.discontinued ASC').order('items.category_id ASC').order('items.name ASC')
     end
   end
 
@@ -86,6 +86,6 @@ class ItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
-      params.require(:item).permit(:category_id, :name, :description)
+      params.require(:item).permit(:category_id, :name, :description, :discontinued)
     end
 end

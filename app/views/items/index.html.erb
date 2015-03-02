@@ -1,4 +1,8 @@
 <h1>Listing items</h1>
+<p>
+  <em>Gray rows indicate a discontinued item.</em>
+</p>
+
 
 <table>
   <thead>
@@ -7,18 +11,22 @@
       <th>Category</th>
       <th>Name</th>
       <th>Description</th>
-      <th></th>
+      <th>Actions</th>
     </tr>
   </thead>
 
   <tbody>
     <% @items.each do |item| %>
-      <tr>
+    <% item.discontinued == true ? item_class = "discontinued" : item_class = "active" %>
+      <tr class='<%= item_class %>'>
         <td><%= item.id %></td>
         <td><%= link_to item.category.name, item.category if item.category %></td>
         <td><%= link_to item.name, item %></td>
         <td><%= item.description %></td>
-        <td><%= link_to 'Edit', edit_item_path(item), class: "button" %></td>
+        <td>
+          <%= link_to "Edit Item", edit_item_path(item), class: "button" %>
+          <%= link_to "New Transaction", new_item_transaction_path(item), class: "button" %>
+        </td>
       </tr>
     <% end %>
   </tbody>

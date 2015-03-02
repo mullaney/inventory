@@ -20,7 +20,9 @@
         <td><%= transaction.code %></td>
         <td><%= link_to transaction.item.name, transaction.item if transaction.item %></td>
         <td><%= transaction.amount %></td>
-        <td><%= link_to 'Edit', edit_item_transaction_path(transaction.item, transaction), class: "button" %></td>
+        <td>
+          <%= link_to 'Edit', edit_item_transaction_path(transaction.item, transaction), class: "button" %>
+          <%= link_to 'Delete', [transaction.item, transaction], method: :delete, class: 'button', data: { confirm: 'Are you sure?'} if transaction.item.id %>
       </tr>
     <% end %>
   </tbody>
