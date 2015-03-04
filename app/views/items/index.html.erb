@@ -24,8 +24,8 @@
         <td><%= link_to item.name, item %></td>
         <td><%= item.description %></td>
         <td>
-          <%= link_to "Edit Item", edit_item_path(item), class: "button" %>
-          <%= link_to "New Transaction", new_item_transaction_path(item), class: "button" if item.discontinued == false %>
+          <%= link_to "Edit Item", edit_item_path(item), class: "button button-edit" %>
+          <%= link_to "New Transaction", new_item_transaction_path(item), class: "button button-new" if item.discontinued == false %>
         </td>
       </tr>
     <% end %>
@@ -35,7 +35,7 @@
 <br>
 
 <% if @category %>
-  <%= link_to "New #{@category.name} Item", new_category_item_path(@category), class: "button" %>
+  <%= link_to "New #{@category.name} Item", new_category_item_path(@category), class: "button button-new" %>
 <% else %>
-  <%= link_to 'New Item', new_item_path, class: "button" %>
+  <%= link_to 'New Item', new_item_path, class: "button button-new" %>
 <% end %>

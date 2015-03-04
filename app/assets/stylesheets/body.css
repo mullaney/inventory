@@ -9,3 +9,18 @@ body a.button {
   border-bottom: 1px solid #333333;
   border-left: 1px solid #CCCCCC;
 }
+
+body a.button-delete {
+  background-color: #b00;
+  color: #fff;
+}
+
+body a.button-edit {
+  background-color: #0b0;
+  color: #fff;
+}
+
+body a.button-new {
+  background-color: #00b;
+  color: #fff;
+}

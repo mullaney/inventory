@@ -23,7 +23,7 @@
       <% end %>
     </td>
     <td>
-      <%= link_to "New Transaction", new_item_transaction_path(item), class: "button" if item.discontinued == false %>
+      <%= link_to "New Transaction", new_item_transaction_path(item), class: "button button-new" if item.discontinued == false %>
     </td>
   </tr>
 <% end %>

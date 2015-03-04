@@ -32,7 +32,7 @@
   <% end %>
 </p>
 <hr />
-<p><%= link_to "Edit #{@item.name}", edit_item_path(@item), class: "button" %></p>
+<p><%= link_to "Edit #{@item.name}", edit_item_path(@item), class: "button button-edit" %></p>
 
 <% if !@transactions.blank? %>
   <table>
@@ -42,7 +42,7 @@
       <th>Code</th>
       <th>Item</th>
       <th>Amount</th>
-      <th></th>
+      <th>Action</th>
     </tr>
     <% @transactions.each do |transaction| %>
       <tr>
@@ -51,11 +51,15 @@
         <td><%= transaction.code %></td>
         <td><%= transaction.item.name %></td>
         <td><%= transaction.amount %></td>
+        <td>
+          <%= link_to "Edit", edit_item_transaction_path(transaction.item, transaction), class: "button button-edit" %>
+          <%= link_to 'Delete', [transaction.item, transaction], method: :delete, class: 'button button-delete', data: { confirm: 'Are you sure?'} if transaction.item.id %>
+        </td>
       </tr>
     <% end %>
   </table>
 <% end %>
 
 <p>
-  <%= link_to "New Transaction", new_item_transaction_path(@item), class: "button" %>
+  <%= link_to "New Transaction", new_item_transaction_path(@item), class: "button button-new" %>
 </p>

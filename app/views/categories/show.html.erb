@@ -5,7 +5,7 @@
 </h1>
 
 <p>
-  <%= link_to 'Edit Category', edit_category_path(@category), class: "button" %>
+  <%= link_to 'Edit Category', edit_category_path(@category), class: "button button-edit" %>
 </p>
 
 <p>
@@ -27,8 +27,8 @@
         <td><%= link_to item.name, item %></td>
         <td><%= item.description %></td>
         <td>
-          <%= link_to "Edit Item", edit_item_path(item), class: "button" %>
-          <%= link_to "New Transaction", new_item_transaction_path(item), class: "button" if item.discontinued == false %>
+          <%= link_to "Edit Item", edit_item_path(item), class: "button button-edit" %>
+          <%= link_to "New Transaction", new_item_transaction_path(item), class: "button button-new" if item.discontinued == false %>
         </td>
       </tr>
     <% end %>
@@ -36,5 +36,5 @@
 <% end %>
 
 <p>
-  <%= link_to "New #{@category.name}", new_category_item_path(@category), class: "button" %>
+  <%= link_to "New #{@category.name}", new_category_item_path(@category), class: "button button-new" %>
 </p>
