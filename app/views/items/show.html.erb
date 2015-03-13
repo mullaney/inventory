@@ -32,7 +32,10 @@
   <% end %>
 </p>
 <hr />
-<p><%= link_to "Edit #{@item.name}", edit_item_path(@item), class: "button button-edit" %></p>
+<p>
+  <%= link_to "Edit #{@item.name}", edit_item_path(@item), class: "button button-edit" %>
+  <%= link_to "New Transaction", new_item_transaction_path(@item), class: "button button-new" %>
+</p>
 
 <% if !@transactions.blank? %>
   <table>
@@ -60,6 +63,3 @@
   </table>
 <% end %>
 
-<p>
-  <%= link_to "New Transaction", new_item_transaction_path(@item), class: "button button-new" %>
-</p>

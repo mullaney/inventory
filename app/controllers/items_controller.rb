@@ -10,6 +10,7 @@ class ItemsController < ApplicationController
     else
       @items = Item.all.order('items.discontinued ASC').order('items.category_id ASC').order('items.name ASC')
     end
+    @title = "Items"
   end
 
   # GET /items/1
@@ -17,6 +18,7 @@ class ItemsController < ApplicationController
   def show
     @transactions = @item.transactions.most_recent_first
     @balance = @item.transactions.sum(:amount)
+    @title = @item.name
   end
 
   # GET /items/new
@@ -25,10 +27,12 @@ class ItemsController < ApplicationController
     if @category
       @item.category_id = @category.id
     end
+    @title = "New Item"
   end
 
   # GET /items/1/edit
   def edit
+    @title = "Edit #{@item.name}"
   end
 
   # POST /items

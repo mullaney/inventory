@@ -6,6 +6,7 @@
 
 <p>
   <%= link_to 'Edit Category', edit_category_path(@category), class: "button button-edit" %>
+  <%= link_to "New #{@category.name}", new_category_item_path(@category), class: "button button-new" %>
 </p>
 
 <p>
@@ -34,7 +35,3 @@
     <% end %>
   </table>
 <% end %>
-
-<p>
-  <%= link_to "New #{@category.name}", new_category_item_path(@category), class: "button button-new" %>
-</p>

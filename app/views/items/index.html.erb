@@ -3,6 +3,13 @@
   <em>Gray rows indicate a discontinued item.</em>
 </p>
 
+<p>
+  <% if @category %>
+    <%= link_to "New #{@category.name} Item", new_category_item_path(@category), class: "button button-new" %>
+  <% else %>
+    <%= link_to 'New Item', new_item_path, class: "button button-new" %>
+  <% end %>
+</p>
 
 <table>
   <thead>
@@ -33,9 +40,3 @@
 </table>
 
 <br>
-
-<% if @category %>
-  <%= link_to "New #{@category.name} Item", new_category_item_path(@category), class: "button button-new" %>
-<% else %>
-  <%= link_to 'New Item', new_item_path, class: "button button-new" %>
-<% end %>

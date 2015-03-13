@@ -10,11 +10,13 @@ class TransactionsController < ApplicationController
     else
       @transactions = Transaction.most_recent_first
     end
+    @title = "Transactions"
   end
 
   # GET /transactions/1
   # GET /transactions/1.json
   def show
+    @title = "Transaction for #{@transaction.item.name}"
   end
 
   # GET /transactions/new
@@ -24,6 +26,7 @@ class TransactionsController < ApplicationController
       @balance = @item.transactions.sum(:amount)
       @transaction.item_id = @item.id
     end
+    @title = "New Transaction for #{@transaction.item.name}"
   end
 
   # GET /transactions/1/edit
@@ -40,7 +43,7 @@ class TransactionsController < ApplicationController
 
     respond_to do |format|
       if @transaction.save
-        format.html { redirect_to [@item, @transaction], notice: 'Transaction was successfully created.' }
+        format.html { redirect_to @item, notice: 'Transaction was successfully created.' }
         format.json { render :show, status: :created, location: @transaction }
       else
         format.html { render :new }
@@ -54,7 +57,7 @@ class TransactionsController < ApplicationController
   def update
     respond_to do |format|
       if @transaction.update(transaction_params)
-        format.html { redirect_to [@item, @transaction], notice: 'Transaction was successfully updated.' }
+        format.html { redirect_to @item, notice: 'Transaction was successfully updated.' }
         format.json { render :show, status: :ok, location: @transaction }
       else
         format.html { render :edit }
